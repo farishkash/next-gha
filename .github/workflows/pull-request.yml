@@ -1,0 +1,27 @@
+#  Name of the workflow
+name: Jest on PR
+#  Trigger workflow on all pull requests
+on:
+  pull_request:
+    branches:
+      - main
+# Workflows to trigger on pull request
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    # Steps to be executed
+    steps:
+      # First get code from the repo
+      - name: Checkout code
+        uses: actions/checkout@v1
+      # Install Node.js
+      - name: Use Node.js 14.x
+        uses: actions/setup-node@v1
+        with:
+          node-version: 14.x
+      # Build the app
+      - name: install dependencies
+        run: npm install
+      # Run the tests
+      - name: Run tests
+        run: npm run test
