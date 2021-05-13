@@ -1,0 +1,47 @@
+#  Name of workflow
+name: Test Workflow
+
+# Trigger workflow on all pull requests
+on:
+  pull_request:
+    branches:
+      - dev
+      - main
+      - master
+    types: [opened, synchronize, reopened]
+
+# Jobs to carry out
+jobs:
+  test:
+    # Operating system to run job on
+    runs-on: ubuntu-latest
+    # Steps in job
+    steps:
+      # Get code from repo
+      - name: Checkout code
+        uses: actions/checkout@v1
+      # Install NodeJS
+      - name: Use Node.js 14.x
+        uses: actions/setup-node@v1
+        with:
+          node-version: 14.x
+
+      - name: 🧰 Install dependencies
+        run: yarn install
+
+      - name: 🧹 Run lint
+        run: yarn lint:fix
+
+      - name: 🐛 Run tests
+        run: yarn test:ci
+
+      # Build the app using cypress
+      - name: Cypress run
+        uses: cypress-io/github-action@v2
+        env:
+          GRAPHCMS_PROJECT_API: ${{ secrets.GRAPHCMS_PROJECT_API }}
+        with:
+          build: yarn run build
+          start: yarn start
+          wait-on: http://localhost:3000
+          browser: chrome

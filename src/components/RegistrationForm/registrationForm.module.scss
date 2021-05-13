@@ -1,0 +1,79 @@
+@use '../../styles/theme';
+
+.registrationForm {
+  background-color: theme.$neutral-200;
+  color: theme.$primary;
+  margin: 48px auto;
+  padding: 24px 0;
+  &__form {
+    @include theme.wrap-section();
+    display: block;
+
+    &--error {
+      padding: 12px;
+      color: theme.$primary;
+      background-color: theme.$error;
+    }
+
+    &--success {
+      padding: 12px;
+      color: theme.$primary;
+      background-color: theme.$success;
+    }
+  }
+
+  &__group {
+    margin: 24px 0;
+  }
+
+  &__input {
+    width: 100%;
+    padding: 12px;
+    font-size: theme.$header5;
+    border: none;
+    color: theme.$primary-inverted;
+    background-color: theme.$neutral-500;
+    transition: all 0.25s cubic-bezier(0.19, 1, 0.22, 1);
+
+    &:active,
+    &:focus,
+    &--focus {
+      background-color: theme.$neutral-600;
+      outline: none;
+    }
+    &::placeholder {
+      color: theme.$primary-inverted;
+    }
+  }
+
+  &__button {
+    cursor: pointer;
+    width: 100%;
+    position: relative;
+    padding: 12px 24px;
+    font-size: theme.$header5;
+    color: theme.$primary-inverted;
+    background-color: theme.$neutral-500;
+    border: 1px solid theme.$background-inverted;
+    transition: all 0.25s cubic-bezier(0.19, 1, 0.22, 1);
+
+    &:hover,
+    &:active,
+    &:focus {
+      color: theme.$primary-inverted;
+      background-color: theme.$background-inverted;
+    }
+
+    &:focus {
+      outline: 1px solid theme.$background-inverted;
+      outline-offset: 2px;
+    }
+    &:disabled {
+      cursor: not-allowed;
+    }
+
+    @include theme.md() {
+      width: 33.3%;
+    }
+  }
+}
