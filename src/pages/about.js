@@ -14,10 +14,7 @@ const About = () => {
       <SecondaryPage title="About Meet/Hang/Code">
         <p>
           Cupidatat labore anim reprehenderit minim consequat irure. Laborum et
-          sit do exercitation. Laborum sint officia ut elit id. Dolor quis duis
-          nostrud exercitation et. Adipisicing ad non exercitation id consequat
-          labore qui adipisicing.
-        </p>
+          sit do exercitation.
 
         <p>
           Laborum voluptate adipisicing est qui velit deserunt. Tempor culpa
